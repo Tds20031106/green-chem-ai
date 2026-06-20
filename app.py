@@ -36,8 +36,12 @@ def create_app():
 
     return app
 
+app = create_app()
 
 if __name__ == '__main__':
-    app = create_app()
     cfg = Config()
-    app.run(debug=cfg.DEBUG, host=cfg.HOST, port=cfg.PORT)
+    app.run(
+        debug=cfg.DEBUG,
+        host='0.0.0.0',
+        port=int(os.environ.get("PORT", 5000))
+    )
